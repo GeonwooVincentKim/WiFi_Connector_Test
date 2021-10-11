@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WifiConnector</string>
+    <string name="stringWifiConnector">WIFI Connector</string>
+    <string name="stringWifiOff">Wifi Off</string>
+</resources>
