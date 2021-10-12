@@ -3,6 +3,8 @@
     package="com.example.wificonnector">
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WifiConnector"
         android:fullBackupContent="@xml/backup_descriptor">
-<!--        android:theme="@style/Theme.WifiConnector">-->
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->
 <!--            android:exported="true">-->
@@ -32,5 +33,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
