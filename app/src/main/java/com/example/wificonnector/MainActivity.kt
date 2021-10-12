@@ -9,6 +9,7 @@ import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private val pageTitle: TextView by lazy {
         findViewById(R.id.pageTitle)
@@ -44,13 +45,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun disableWiFi() {
         wifiManager =
-            applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager wifiManager.isWifiEnabled = false
+            applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager.isWifiEnabled = false
         Toast.makeText(this, "Wifi Disabled", Toast.LENGTH_SHORT).show()
     }
 
     private fun enableWiFi() {
         wifiManager =
-            applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager wifiManager.isWifiEnabled = true
+            applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        wifiManager.isWifiEnabled = true
         Toast.makeText(this, "Wifi Enabled", Toast.LENGTH_SHORT).show()
     }
 }
