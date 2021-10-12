@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.view.View
 import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -26,10 +27,10 @@ class MainActivity : AppCompatActivity() {
     private val switchWifi: Switch by lazy {
         findViewById(R.id.switchWifi)
     }
-//
-//    private val showResultButton: Button by lazy {
-//        findViewById(R.id.showResultButton)
-//    }
+
+    private val showResultButton: Button by lazy {
+        findViewById(R.id.showResultButton)
+    }
 
     private val wifiConnectResult: TextView by lazy {
         findViewById(R.id.wifiConnectResult)
@@ -56,16 +57,34 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+
+//        if(wifiManager.isWifiEnabled) {
+//            showResultButton.text = "Turn Wifi Off"
+//        } else if(!(wifiManager.isWifiEnabled)){
+//            showResultButton.text = "Turn Wifi On"
+//        }
+
         /* Original Code */
-        switchWifi.setOnCheckedChangeListener { _, _ ->
-            if (isChecked) {
-                wifiConnectResult.text = "WIFI ON"
-                enableWiFi()
-            } else {
-                wifiConnectResult.text = "WIFI OFF"
-                disableWiFi()
+        switchWifi.setOnClickListener {
+            if(wifiManager.isWifiEnabled){
+                showResultButton.text = "Turn WiFi On"
+                wifiManager.isWifiEnabled = false
+            } else if(!(wifiManager.isWifiEnabled)){
+                showResultButton.text = "Turn WiFi Off"
+                wifiManager.isWifiEnabled = true
             }
         }
+
+//        switchWifi.setOnCheckedChangeListener { _, _ ->
+//            if (isChecked) {
+//                wifiConnectResult.text = "WIFI ON"
+//                enableWiFi()
+//            } else {
+//                wifiConnectResult.text = "WIFI OFF"
+//                disableWiFi()
+//            }
+//        }
 
 //        switchWifi.setOnCheckedChangeListener { _, _ ->
 ////            if (switchWifi.isChecked) {
@@ -83,19 +102,19 @@ class MainActivity : AppCompatActivity() {
 ////            }
 ////        }
 //
-//        showResultButton.setOnClickListener {
-//            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
-//                NetworkStatus().typeMobile -> {
-//                    wifiConnectResult.text = "Connect as Mobile"
-//                }
-//                NetworkStatus().typeWifi -> {
-//                    wifiConnectResult.text = "Connect as Wi-Fi"
-//                }
-//                else -> {
-//                    wifiConnectResult.text = "Could not connect"
-//                }
-//            }
-//        }
+        showResultButton.setOnClickListener {
+            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
+                NetworkStatus().typeMobile -> {
+                    wifiConnectResult.text = "Connect as Mobile"
+                }
+                NetworkStatus().typeWifi -> {
+                    wifiConnectResult.text = "Connect as Wi-Fi"
+                }
+                else -> {
+                    wifiConnectResult.text = "Could not connect"
+                }
+            }
+        }
     }
 //
 //    private fun connectivityWIFI() {

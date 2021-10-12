@@ -21,27 +21,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/showResultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pageTitle"
+        android:text="@string/stringCheckCondition"
+        android:textSize="11sp"
+        android:textColor="@color/white"/>
+
     <Switch
         android:id="@+id/switchWifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pageTitle"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-<!--    <Button-->
-<!--        android:id="@+id/showResultButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/pageTitle"-->
-<!--        android:text="@string/stringCheckCondition"-->
-<!--        android:textSize="11sp"-->
-<!--        android:textColor="@color/white"/>-->
 
     <TextView
         android:id="@+id/wifiConnectResult"
