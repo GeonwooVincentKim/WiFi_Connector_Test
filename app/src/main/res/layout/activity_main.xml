@@ -21,27 +21,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    <Switch-->
-    <!--        android:id="@+id/switchWifi"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:layout_marginTop="10sp"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/pageTitle"-->
-    <!--        tools:ignore="UseSwitchCompatOrMaterialXml" />-->
-
-    <Button
-        android:id="@+id/showResultButton"
+    <Switch
+        android:id="@+id/switchWifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pageTitle"
-        android:text="@string/stringCheckCondition"
-        android:textSize="11sp"
-        android:textColor="@color/white"/>
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+<!--    <Button-->
+<!--        android:id="@+id/showResultButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/pageTitle"-->
+<!--        android:text="@string/stringCheckCondition"-->
+<!--        android:textSize="11sp"-->
+<!--        android:textColor="@color/white"/>-->
 
     <TextView
         android:id="@+id/wifiConnectResult"
@@ -54,6 +54,6 @@
         android:textStyle="bold|italic"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/showResultButton" />
+        app:layout_constraintTop_toBottomOf="@id/switchWifi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

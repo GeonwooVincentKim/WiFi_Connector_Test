@@ -23,32 +23,32 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.pageTitle)
     }
 
-//    private val switchWifi: Switch by lazy {
-//        findViewById(R.id.switchWifi)
-//    }
-
-    private val showResultButton: Button by lazy {
-        findViewById(R.id.showResultButton)
+    private val switchWifi: Switch by lazy {
+        findViewById(R.id.switchWifi)
     }
+//
+//    private val showResultButton: Button by lazy {
+//        findViewById(R.id.showResultButton)
+//    }
 
     private val wifiConnectResult: TextView by lazy {
         findViewById(R.id.wifiConnectResult)
     }
 
     private lateinit var wifiManager: WifiManager
-//    private val isChecked: Boolean = true
+    private val isChecked: Boolean = true
 
-    private val networkCallback = object : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: Network) {
-            super.onAvailable(network)
-            Log.d("Test", "Wifi Available")
-        }
-
-        override fun onLost(network: Network) {
-            super.onLost(network)
-            Log.d("Test", "Wifi UnAvailable")
-        }
-    }
+//    private val networkCallback = object : ConnectivityManager.NetworkCallback() {
+//        override fun onAvailable(network: Network) {
+//            super.onAvailable(network)
+//            Log.d("Test", "Wifi Available")
+//        }
+//
+//        override fun onLost(network: Network) {
+//            super.onLost(network)
+//            Log.d("Test", "Wifi UnAvailable")
+//        }
+//    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
@@ -57,15 +57,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /* Original Code */
-//        switchWifi.setOnCheckedChangeListener { _, isChecked ->
-//            if (switchWifi.isChecked) {
-//                wifiConnectResult.text = "WIFI ON"
-//                enableWiFi()
-//            } else {
-//                wifiConnectResult.text = "WIFI OFF"
-//                disableWiFi()
-//            }
-//        }
+        switchWifi.setOnCheckedChangeListener { _, _ ->
+            if (isChecked) {
+                wifiConnectResult.text = "WIFI ON"
+                enableWiFi()
+            } else {
+                wifiConnectResult.text = "WIFI OFF"
+                disableWiFi()
+            }
+        }
 
 //        switchWifi.setOnCheckedChangeListener { _, _ ->
 ////            if (switchWifi.isChecked) {
@@ -83,57 +83,57 @@ class MainActivity : AppCompatActivity() {
 ////            }
 ////        }
 //
-        showResultButton.setOnClickListener {
-            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
-                NetworkStatus().typeMobile -> {
-                    wifiConnectResult.text = "Connect as Mobile"
-                }
-                NetworkStatus().typeWifi -> {
-                    wifiConnectResult.text = "Connect as Wi-Fi"
-                }
-                else -> {
-                    wifiConnectResult.text = "Could not connect"
-                }
-            }
-        }
+//        showResultButton.setOnClickListener {
+//            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
+//                NetworkStatus().typeMobile -> {
+//                    wifiConnectResult.text = "Connect as Mobile"
+//                }
+//                NetworkStatus().typeWifi -> {
+//                    wifiConnectResult.text = "Connect as Wi-Fi"
+//                }
+//                else -> {
+//                    wifiConnectResult.text = "Could not connect"
+//                }
+//            }
+//        }
     }
+//
+//    private fun connectivityWIFI() {
+//        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+//
+//        val builder = NetworkRequest.Builder()
+//        builder.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+//
+//        val networkRequest = builder.build()
+//        connectivityManager.registerNetworkCallback(networkRequest,
+//            object : ConnectivityManager.NetworkCallback() {
+//                override fun onAvailable(network: Network) {
+//                    super.onAvailable(network)
+//                    Log.i("Test", "Network Available")
+//                }
+//
+//                override fun onLost(network: Network) {
+//                    super.onLost(network)
+//                    Log.i("Test", "Connection lost")
+//                }
+//            })
+//    }
 
-    private fun connectivityWIFI() {
-        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        val builder = NetworkRequest.Builder()
-        builder.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-
-        val networkRequest = builder.build()
-        connectivityManager.registerNetworkCallback(networkRequest,
-            object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    super.onAvailable(network)
-                    Log.i("Test", "Network Available")
-                }
-
-                override fun onLost(network: Network) {
-                    super.onLost(network)
-                    Log.i("Test", "Connection lost")
-                }
-            })
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun isWIFIConnected(context: Context): Boolean {
-        var result = false
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-                as ConnectivityManager
-        val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
-        if (capabilities != null) {
-            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                result = true
-            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                result = false
-            }
-        }
-        return result
-    }
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    private fun isWIFIConnected(context: Context): Boolean {
+//        var result = false
+//        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+//                as ConnectivityManager
+//        val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
+//        if (capabilities != null) {
+//            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+//                result = true
+//            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+//                result = false
+//            }
+//        }
+//        return result
+//    }
 
 
     private fun disableWiFi() {
@@ -150,31 +150,31 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Wifi Enabled", Toast.LENGTH_SHORT).show()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun registerNetworkCallback() {
-        val cm = getSystemService(ConnectivityManager::class.java)
-        val wifiNetworkRequest = NetworkRequest.Builder()
-            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-            .build()
-
-        cm.registerNetworkCallback(wifiNetworkRequest, networkCallback)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun unregisterNetworkCallback() {
-        val cm = getSystemService(ConnectivityManager::class.java)
-        cm.unregisterNetworkCallback(networkCallback)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onResume() {
-        super.onResume()
-        registerNetworkCallback()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onStop() {
-        super.onStop()
-        unregisterNetworkCallback()
-    }
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    private fun registerNetworkCallback() {
+//        val cm = getSystemService(ConnectivityManager::class.java)
+//        val wifiNetworkRequest = NetworkRequest.Builder()
+//            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+//            .build()
+//
+//        cm.registerNetworkCallback(wifiNetworkRequest, networkCallback)
+//    }
+//
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    private fun unregisterNetworkCallback() {
+//        val cm = getSystemService(ConnectivityManager::class.java)
+//        cm.unregisterNetworkCallback(networkCallback)
+//    }
+//
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    override fun onResume() {
+//        super.onResume()
+//        registerNetworkCallback()
+//    }
+//
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    override fun onStop() {
+//        super.onStop()
+//        unregisterNetworkCallback()
+//    }
 }
