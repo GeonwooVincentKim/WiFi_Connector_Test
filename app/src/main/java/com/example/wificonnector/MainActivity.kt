@@ -11,6 +11,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.Switch
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val networkStatus = NetworkStatus().getConnectivityStatus(applicationContext)
 
 //        if(wifiManager.isWifiEnabled) {
 //            showResultButton.text = "Turn Wifi Off"
@@ -103,17 +105,38 @@ class MainActivity : AppCompatActivity() {
 ////        }
 //
         showResultButton.setOnClickListener {
-            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
-                NetworkStatus().typeMobile -> {
-                    wifiConnectResult.text = "Connect as Mobile"
+            if (networkStatus == NetworkStatus().typeMobile || networkStatus == NetworkStatus().typeWifi){
+                wifiConnectResult.text = "Current Status : $networkStatus"
+
+                if(networkStatus == 1){
+                    wifiConnectResult.text = "Wifi"
+                } else {
+                    wifiConnectResult.text = "Mobile"
                 }
-                NetworkStatus().typeWifi -> {
-                    wifiConnectResult.text = "Connect as Wi-Fi"
-                }
-                else -> {
-                    wifiConnectResult.text = "Could not connect"
-                }
+            } else {
+                wifiConnectResult.text = "Current Status : $networkStatus"
             }
+//            when (NetworkStatus().getConnectivityStatus(applicationContext)) {
+//                NetworkStatus().typeMobile -> {
+//                    wifiConnectResult.text = "Connect as Mobile"
+//                }
+//                NetworkStatus().typeWifi -> {
+//                    wifiConnectResult.text = "Connect as Wi-Fi"
+//                }
+//
+//
+//
+//                NetworkStatus().typeMobile || NetworkStatus().typeWifi ->
+//                {
+//
+//                }
+//                else -> {
+//                    if(Settings.System.getInt(contentResolver, Settings.Global.AIRPLANE_MODE_ON, 0) == 0){
+////                        Toast.makeText(application, "")
+//                        wifiConnectResult.text = "Could not connect"
+//                    }
+//                }
+//            }
         }
     }
 //
